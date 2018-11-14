@@ -179,11 +179,11 @@ foreach ($templateInfo as $key => $value) {
                 } elseif ($action == 'delete' && $_GET['propertyCount'] == $propertyCount){
                   ?>
                   <tr>
-                    <td>data</td>
-                    <td>data</td>
-                    <td>data</td>
-                    <td>data</td>
-                    <td>data</td>
+                    <td></td>
+                    <td><?php echo $property['description']; ?></td>
+                    <td><?php echo htmlspecialchars($property['property'], ENT_COMPAT, CHARSET, TRUE); ?></td>
+                    <td class="dataTableContent" style="background-color: <?php echo $property['value']; ?>;min-width:60px;">&nbsp;</td>
+                    <td><?php echo htmlspecialchars($property['value'], ENT_COMPAT, CHARSET, TRUE); ?></td>
                     <td>
                       <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, 'select_template=' . $currentTemplate); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></a>
                     <button type="submit" class="btn btn-danger"><i class="fa fa-trash fa-lg"></i></button>
