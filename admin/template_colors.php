@@ -41,9 +41,8 @@ if (zen_not_null($_POST['select_template'])) {
 }
 
 switch ($action) {
-  case 'set_template':
+  case 'set_template' :
     $cssArray = CssFileToArray($currentTemplate);
-    zen_redirect(FILENAME_TEMPLATE_COLORS, zen_get_all_get_params());
     break;
   case 'edit' :
     $file_writeable = true;
@@ -56,11 +55,13 @@ switch ($action) {
       $cssArray = CssFileToArray($currentTemplate);
     }
     break;
-  case 'save':
+  case 'save' :
     $cssPostArray = new objectInfo($_POST['css']);
     $cssFilePath = $_POST['file'];
     saveCssToFile($cssPostArray, $cssFilePath);
     zen_redirect(zen_href_link(FILENAME_TEMPLATE_COLORS, 'select_template=' . $currentTemplate));
+    break;
+  case 'insertElement' :
     break;
   default :
     if (!isset($currentTemplate) && $currentTemplate !== '') {
@@ -176,7 +177,7 @@ foreach ($templateInfo as $key => $value) {
                     </td>
                   </tr>
                   <?php
-                } elseif ($action == 'delete' && $_GET['propertyCount'] == $propertyCount){
+                } elseif ($action == 'delete' && $_GET['propertyCount'] == $propertyCount) {
                   ?>
                   <tr>
                     <td></td>
@@ -186,11 +187,11 @@ foreach ($templateInfo as $key => $value) {
                     <td><?php echo htmlspecialchars($property['value'], ENT_COMPAT, CHARSET, TRUE); ?></td>
                     <td>
                       <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, 'select_template=' . $currentTemplate); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></a>
-                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash fa-lg"></i></button>
-                    <?php echo zen_draw_hidden_field('deleteProperty', 'true'); ?>
+                      <button type="submit" class="btn btn-danger"><i class="fa fa-trash fa-lg"></i></button>
+                      <?php echo zen_draw_hidden_field('deleteProperty', 'true'); ?>
                     </td>
                   </tr>
-                    <?php
+                  <?php
                 } else {
                   ?>
                   <tr>
@@ -244,13 +245,35 @@ foreach ($templateInfo as $key => $value) {
           <tfoot>
             <tr>
               <td colspan="6">
-                <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, zen_get_all_get_params(array('action')) . 'action=newElement'); ?>" class="btn btn-primary" role="button"><i class="fa fa-plus"></i> Add new element</a>
+                  <?php if ($_GET['action'] == '') { ?>
+                  <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, zen_get_all_get_params(array('action')) . 'action=newElement'); ?>" class="btn btn-primary" role="button"><i class="fa fa-plus"></i> Add new element</a>
+                <?php } ?>
               </td>
             </tr>
           </tfoot>
         </table>
         <?php echo '</form>'; ?>
-      </div>
+        <?php
+        if ($action == 'newElement') {
+          ?>
+          <?php echo zen_draw_form('insertElement', FILENAME_TEMPLATE_COLORS, 'action=insertElement', 'post', 'class="form-horizontal"'); ?>
+          <table class="table">
+            <tr>
+              <td class="dataTableContent"><?php echo zen_draw_label('Element name (class or id)', 'element', 'class="control-label"'); ?></td>
+              <td class="dataTableContent"><?php echo zen_draw_input_field('element', '', 'class="form-control" autofocus'); ?></td>
+              <td class="dataTableContent">
+                <div class="btn-group back" style="display:flex;">
+                  <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg" aria-hidden="true"></i> <?php echo IMAGE_SAVE; ?></button>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <?php echo '</form>'; ?>
+        </div>
+        <?php
+      }
+      ?>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/0.11.1/tinycolor.min.js"></script>
     <script src="includes/javascript/colorpicker.js"></script>
