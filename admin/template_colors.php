@@ -162,7 +162,7 @@ foreach ($templateInfo as $key => $value) {
                     <td>&nbsp;</td>
                     <td class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][description]', $property['description'], 'class="form-control"' . ($_GET['advanced'] !== 'true' ? ' readonly' : '')); ?></td>
                     <td class="dataTableContent"><?php echo zen_draw_pull_down_menu('css[' . $element . '][' . $propertyCount . '][property]', $propertyArray, $property['property'], 'class="form-control"' . ($_GET['advanced'] !== 'true' ? ' readonly' : '')); ?></td>
-                    <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][value]', htmlspecialchars($property['value'], ENT_COMPAT, CHARSET, TRUE), 'class="form-control" id="full-popover" data-color-format="hex"'); ?></td>
+                    <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][value]', htmlspecialchars($property['value'], ENT_COMPAT, CHARSET, TRUE), 'autofocus class="form-control" id="full-popover" data-color-format="hex"'); ?></td>
                     <td class="dataTableContent text-right">
                       <div class="btn-group" style="display:flex;float:right;">
                           <?php if (isset($_GET['advanced']) && $_GET['advanced'] == 'true') { ?>
@@ -227,7 +227,7 @@ foreach ($templateInfo as $key => $value) {
                   <td class="dataTableContent">&nbsp;</td>
                   <td class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][description]', '', 'class="form-control" placeholder="Optional Comment"'); ?></td>
                   <td class="dataTableContent"><?php echo zen_draw_pull_down_menu('css[' . $element . '][' . $propertyCount . '][property]', $propertyArray, '', 'class="form-control"'); ?></td>
-                  <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][value]', '', 'class="form-control" id="full-popover" data-color-format="hex"'); ?></td>
+                  <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][value]', '', 'autofocus class="form-control" id="full-popover" data-color-format="hex"'); ?></td>
                   <td class="dataTableContent">
                     <div class="btn-group back" style="display:flex;">
                       <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
