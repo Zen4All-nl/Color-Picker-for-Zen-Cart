@@ -8,6 +8,9 @@
  */
 require('includes/application_top.php');
 
+// temp location for define
+define('COLOR_STYLESHEET', 'stylesheet_colors.css');
+
 $action = (isset($_GET['action']) ? $_GET['action'] : '');
 $cssArray = array();
 $propertyArray = [
@@ -46,10 +49,10 @@ switch ($action) {
     break;
   case 'edit' :
     $file_writeable = true;
-    if (!is_writeable(DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . 'stylesheet_colors.css')) {
+    if (!is_writeable(DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . COLOR_STYLESHEET)) {
       $file_writeable = false;
       $messageStack->reset();
-      $messageStack->add(sprintf(ERROR_FILE_NOT_WRITEABLE, DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . 'stylesheet_colors.css'), 'error');
+      $messageStack->add(sprintf(ERROR_FILE_NOT_WRITEABLE, DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . COLOR_STYLESHEET), 'error');
       echo $messageStack->output();
     } else {
       $cssArray = CssFileToArray($currentTemplate);
@@ -115,7 +118,7 @@ foreach ($templateInfo as $key => $value) {
       </div>
       <div class="row">
           <?php echo zen_draw_form('edit-css', FILENAME_TEMPLATE_COLORS, 'action=save', 'post', 'class="form-horizontal"'); ?>
-          <?php echo zen_draw_hidden_field('file', DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . 'stylesheet_colors.css'); ?>
+          <?php echo zen_draw_hidden_field('file', DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . COLOR_STYLESHEET); ?>
         <table class="table table-striped">
           <thead>
             <tr class="dataTableHeadingRow">
@@ -319,7 +322,7 @@ function getTemplateInfo() {
 }
 
 function CssFileToArray($currentTemplate) {
-  $cssFile = DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . 'stylesheet_colors.css';
+  $cssFile = DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . COLOR_STYLESHEET;
   if (file_exists($cssFile)) {
     $cssFileString = file_get_contents($cssFile);
   }
