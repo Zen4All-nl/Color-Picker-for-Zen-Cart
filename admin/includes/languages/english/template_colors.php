@@ -17,3 +17,4 @@ define('TEXT_HELP_TEMPLATE', 'Selecting the template will load the colors styles
 define('ERROR_FILE_NOT_WRITEABLE', 'Error: I can not write to this file. Please set the right user permissions on: %s');
 define('TEXT_INFO_COPY_COMPLETED', 'Succesful saved');
 define('TEXT_INFO_NOT_CHANGED', 'Not changed');
+define('TEXT_IMPORTANT', 'Use !important');
