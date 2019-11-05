@@ -10,4 +10,5 @@
  * @version Author: rbarbour (ZCAdditions.com)  7/01/2018 06:00 AM Modified ZCA-BS-COLORS
  */
 
+define('BOX_CONFIGURATION_Z4A_COLOR_PICKER', 'Template Colors');
 define('BOX_TOOLS_TEMPLATE_COLORS', 'Template Colors');

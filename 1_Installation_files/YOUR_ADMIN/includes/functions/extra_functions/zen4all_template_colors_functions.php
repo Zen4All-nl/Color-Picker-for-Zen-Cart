@@ -39,7 +39,7 @@ function getTemplateInfo()
  */
 function CssFileToArray($currentTemplate)
 {
-  $cssFile = DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . COLOR_STYLESHEET;
+  $cssFile = DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . ZEN4ALL_COLORPICKER_STYLESHEET;
   if (file_exists($cssFile)) {
     $cssFileString = file_get_contents($cssFile);
   }
