@@ -154,26 +154,27 @@ foreach ($templateInfo as $key => $value) {
                       <?php } ?>
                     </td>
                   </tr>
-                  <?php
-                }
-                foreach ($properties as $property) {
-                  if ($property['property'] == 'background') {
-                    $property['property'] = 'background-color';
-                  }
-                  ?>
-                  <tr>
-                    <td colspan="2">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th class="dataTableHeadingContent" id="headingColorDescription" style="width:40%"><?php echo TABLE_HEADING_COLOR_TITLE; ?></th>
-                            <th class="dataTableHeadingContent" id="headingColorPorperty" style="width:30%"><?php echo TABLE_HEADING_COLOR_PROPERTY; ?></th>
-                            <th class="dataTableHeadingContent" id="headingColorValue" style="width:10%"><?php echo TABLE_HEADING_COLOR_VALUE; ?></th>
-                            <th style="width:10%"></th>
-                            <th style="width:10%"></th>
-                          </tr>
-                        </thead>
-                        <tbody>
+                <?php } ?>
+                <tr>
+                  <td colspan="2">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="dataTableHeadingContent" id="headingColorDescription" style="width:40%"><?php echo TABLE_HEADING_COLOR_TITLE; ?></th>
+                          <th class="dataTableHeadingContent" id="headingColorPorperty" style="width:30%"><?php echo TABLE_HEADING_COLOR_PROPERTY; ?></th>
+                          <th class="dataTableHeadingContent" id="headingColorValue" style="width:10%"><?php echo TABLE_HEADING_COLOR_VALUE; ?></th>
+                          <th style="width:10%"></th>
+                          <th style="width:10%"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        foreach ($properties as $property) {
+                          if ($property['property'] == 'background') {
+                            $property['property'] = 'background-color';
+                          }
+                          ?>
+
                           <?php if ($action == 'edit' && $_GET['propertyCount'] == $propertyCount) { ?>
 
                             <tr>
@@ -228,30 +229,30 @@ foreach ($templateInfo as $key => $value) {
                           }
                           $propertyCount++;
                           ?>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <?php
-                }
-                if ($action == 'newSelector' && $elementCount == $_GET['newline']) {
-                  ?>
-                  <tr>
-                    <td class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][description]', '', 'class="form-control" placeholder="Optional Comment"'); ?></td>
-                    <td class="dataTableContent"><?php echo zen_draw_pull_down_menu('css[' . $element . '][' . $propertyCount . '][property]', $propertyArray, '', 'class="form-control"'); ?></td>
-                    <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][value]', '', 'class="form-control" id="full-popover" data-color-format="hex"'); ?></td>
-                    <td class="dataTableContent">
-                      <div class="btn-group back" style="display:flex;">
-                        <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg" aria-hidden="true"></i> <?php echo IMAGE_SAVE; ?></button>
-                      </div>
-                    </td>
-                  </tr>
-                  <?php
-                }
-                $elementCount++;
-              }
-              ?>
+                          <?php
+                        }
+                        if ($action == 'newSelector' && $elementCount == $_GET['newline']) {
+                          ?>
+                          <tr>
+                            <td class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][description]', '', 'class="form-control" placeholder="Optional Comment"'); ?></td>
+                            <td class="dataTableContent"><?php echo zen_draw_pull_down_menu('css[' . $element . '][' . $propertyCount . '][property]', $propertyArray, '', 'class="form-control"'); ?></td>
+                            <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][value]', '', 'class="form-control" id="full-popover" data-color-format="hex"'); ?></td>
+                            <td class="dataTableContent">
+                              <div class="btn-group back" style="display:flex;">
+                                <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg" aria-hidden="true"></i> <?php echo IMAGE_SAVE; ?></button>
+                              </div>
+                            </td>
+                          </tr>
+                          <?php
+                        }
+                        $elementCount++;
+                        ?>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              <?php } ?>
             </tbody>
             <tfoot>
               <tr>
