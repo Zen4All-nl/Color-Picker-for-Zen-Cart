@@ -65,7 +65,7 @@ switch ($action) {
     $cssPostArray = new objectInfo($_POST['css']);
     $cssFilePath = $_POST['file'];
     saveCssToFile($cssPostArray, $cssFilePath);
-    zen_redirect(zen_href_link(FILENAME_TEMPLATE_COLORS, 'select_template=' . $currentTemplate));
+    zen_redirect(zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'select_template=' . $currentTemplate));
     break;
   case 'insertElement' :
     break;
@@ -115,7 +115,7 @@ foreach ($templateInfo as $key => $value) {
         </div>
         <div class="panel-body">
           <div class="row">
-            <?php echo zen_draw_form('template-select', FILENAME_TEMPLATE_COLORS, '', 'get', 'class="form-horizontal"'); ?>
+            <?php echo zen_draw_form('template-select', FILENAME_Z4A_TEMPLATE_COLORS, '', 'get', 'class="form-horizontal"'); ?>
             <?php echo zen_draw_label(LABEL_SELECT_TEMPLATE, 'select_template', 'class="control-label col-sm-3"'); ?>
             <div class="col-sm-9 col-md-6">
               <?php echo zen_draw_pull_down_menu('select_template', $templateArray, $currentTemplate, 'class="form-control" onchange="this.form.submit();"'); ?>
@@ -125,7 +125,7 @@ foreach ($templateInfo as $key => $value) {
             <?php echo '</form>'; ?>
           </div>
         </div>
-        <?php echo zen_draw_form('edit-css', FILENAME_TEMPLATE_COLORS, 'action=save', 'post', 'class="form-horizontal"'); ?>
+        <?php echo zen_draw_form('edit-css', FILENAME_Z4A_TEMPLATE_COLORS, 'action=save', 'post', 'class="form-horizontal"'); ?>
         <?php echo zen_draw_hidden_field('file', DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . ZEN4ALL_COLORPICKER_STYLESHEET); ?>
         <div class="table-responsive">
           <table class="table table-striped">
@@ -154,7 +154,7 @@ foreach ($templateInfo as $key => $value) {
                     </td>
                     <td class="Action text-right">
                       <?php if ($action == '' || $action == 'set_template') { ?>
-                        <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, zen_get_all_get_params(array('action', 'newline')) . 'action=newSelector&newline=' . $elementCount); ?>" class="btn btn-primary btn-xs" role="button"><i class="fa fa-plus"></i> Add property</a>
+                        <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, zen_get_all_get_params(array('action', 'newline')) . 'action=newSelector&newline=' . $elementCount); ?>" class="btn btn-primary btn-xs" role="button"><i class="fa fa-plus"></i> Add property</a>
                       <?php } ?>
                     </td>
                   </tr>
@@ -192,11 +192,11 @@ foreach ($templateInfo as $key => $value) {
                               <td class="dataTableContent text-right">
                                 <div class="btn-group back" style="display:flex;">
                                   <?php if (isset($_GET['advanced']) && $_GET['advanced'] == 'true') { ?>
-                                    <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, 'action=edit&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount); ?>" class="btn btn-primary btn-sm" role="button" title="Default Edit"><i class="fa fa-minus-square-o fa-lg" aria-hidden="true"></i></a>
+                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=edit&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount); ?>" class="btn btn-primary btn-sm" role="button" title="Default Edit"><i class="fa fa-minus-square-o fa-lg" aria-hidden="true"></i></a>
                                   <?php } else { ?>
-                                    <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, 'action=edit&advanced=true&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" title="!! Advanced edit !! Be Careful" class="btn btn-primary btn-sm" role="button"><i class="fa fa-plus-square-o fa-lg" aria-hidden="true"></i></a>
+                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=edit&advanced=true&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" title="!! Advanced edit !! Be Careful" class="btn btn-primary btn-sm" role="button"><i class="fa fa-plus-square-o fa-lg" aria-hidden="true"></i></a>
                                   <?php } ?>
-                                  <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, 'select_template=' . $currentTemplate); ?>" class="btn btn-default btn-sm" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></a>
+                                  <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'select_template=' . $currentTemplate); ?>" class="btn btn-default btn-sm" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></a>
                                   <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save fa-lg"></i></button>
                                 </div>
                               </td>
@@ -209,7 +209,7 @@ foreach ($templateInfo as $key => $value) {
                               <td><?php echo htmlspecialchars($property['value'], ENT_COMPAT, CHARSET, TRUE); ?></td>
                               <td>
                                 <div class="btn-group back" style="display:flex;">
-                                  <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, 'select_template=' . $currentTemplate); ?>" class="btn btn-default btn-sm" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></a>
+                                  <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'select_template=' . $currentTemplate); ?>" class="btn btn-default btn-sm" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></a>
                                   <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i></button>
                                 </div>
                                 <?php echo zen_draw_hidden_field('deleteProperty', 'true'); ?>
@@ -233,8 +233,8 @@ foreach ($templateInfo as $key => $value) {
                               <td class="dataTableContent text-right">
                                 <?php if ($action == '' || $action == 'set_template') { ?>
                                   <div class="btn-group back" style="display:flex;">
-                                    <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, 'action=edit&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit fa-lg" aria-hidden="true"></i></a>
-                                    <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, 'action=delete&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" class="btn btn-warning btn-sm" role="button"><i class="fa fa-trash fa-lg"></i></a>
+                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=edit&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit fa-lg" aria-hidden="true"></i></a>
+                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=delete&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" class="btn btn-warning btn-sm" role="button"><i class="fa fa-trash fa-lg"></i></a>
                                   </div>
                                 <?php } ?>
                               </td>
@@ -251,7 +251,7 @@ foreach ($templateInfo as $key => $value) {
                             <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][value]', '', 'class="form-control" id="full-popover" data-color-format="hex"'); ?></td>
                             <td class="dataTableContent">
                               <div class="btn-group back" style="display:flex;">
-                                <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
+                                <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg" aria-hidden="true"></i> <?php echo IMAGE_SAVE; ?></button>
                               </div>
                             </td>
@@ -270,7 +270,7 @@ foreach ($templateInfo as $key => $value) {
               <tr>
                 <td colspan="2">
                   <?php if ($_GET['action'] == '') { ?>
-                    <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, zen_get_all_get_params(array('action')) . 'action=newElement'); ?>" class="btn btn-primary" role="button"><i class="fa fa-plus"></i> Add new element</a>
+                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, zen_get_all_get_params(array('action')) . 'action=newElement'); ?>" class="btn btn-primary" role="button"><i class="fa fa-plus"></i> Add new element</a>
                   <?php } ?>
                 </td>
               </tr>
@@ -279,14 +279,14 @@ foreach ($templateInfo as $key => $value) {
         </div>
         <?php echo '</form>'; ?>
         <?php if ($action == 'newElement') { ?>
-          <?php echo zen_draw_form('insertElement', FILENAME_TEMPLATE_COLORS, 'action=insertElement', 'post', 'class="form-horizontal"'); ?>
+          <?php echo zen_draw_form('insertElement', FILENAME_Z4A_TEMPLATE_COLORS, 'action=insertElement', 'post', 'class="form-horizontal"'); ?>
           <table class="table">
             <tr>
               <td class="dataTableContent"><?php echo zen_draw_label('Element name (class or id)', 'element', 'class="control-label"'); ?></td>
               <td class="dataTableContent"><?php echo zen_draw_input_field('element', '', 'class="form-control"'); ?></td>
               <td class="dataTableContent">
                 <div class="btn-group back" style="display:flex;">
-                  <a href="<?php echo zen_href_link(FILENAME_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
+                  <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
                   <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg" aria-hidden="true"></i> <?php echo IMAGE_SAVE; ?></button>
                 </div>
               </td>
