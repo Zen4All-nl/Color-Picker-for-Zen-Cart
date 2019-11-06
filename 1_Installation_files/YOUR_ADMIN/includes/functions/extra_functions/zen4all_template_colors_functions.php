@@ -39,7 +39,7 @@ function getTemplateInfo()
  */
 function CssFileToArray($currentTemplate)
 {
-  $cssFile = DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . COLOR_STYLESHEET;
+  $cssFile = DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . ZEN4ALL_COLORPICKER_STYLESHEET;
   if (file_exists($cssFile)) {
     $cssFileString = file_get_contents($cssFile);
   }
@@ -63,8 +63,8 @@ function CssFileToArray($currentTemplate)
         $result[$selector][] = [
           'property' => trim($rule[0]),
           'value' => trim(str_replace('!important', '', $rule[1])),
-          'important' => strstr($rule[1], '!'),
-          'description' => trim($comment)];
+          'important' => strstr($rule[1], '!')/*,
+          'description' => trim($comment)*/];
       }
     }
   }
@@ -86,8 +86,8 @@ function saveCssToFile($cssPostArray, $newCssFile)
 
     fwrite($tempFile, $newElement . ' {' . "\n");
     foreach ($newCssBlock as $newCssLine) {
-      ($newCssLine['description'] !== '' ? fwrite($tempFile, '/* ' . $newCssLine['description'] . ' */' . "\n") : '');
-      fwrite($tempFile, $newCssLine['property'] . ':' . $newCssLine['value'] . ($newCssLine['important'] == '1!important' ? ' ' . $newCssLine['important'] : '') . ';' . "\n");
+     // ($newCssLine['description'] !== '' ? fwrite($tempFile, '/* ' . $newCssLine['description'] . ' */' . "\n") : '');
+      fwrite($tempFile, $newCssLine['property'] . ':' . $newCssLine['value'] . ($newCssLine['important'] == '!important' ? ' ' . $newCssLine['important'] : '') . ';' . "\n");
     }
     fwrite($tempFile, '}' . "\n");
   }

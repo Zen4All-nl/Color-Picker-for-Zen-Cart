@@ -33,7 +33,7 @@ if (defined($module_constant)) {
                 WHERE configuration_group_id = " . $configuration_group_id . ";");
 
   $db->Execute("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, set_function)
-                VALUES ('Version', '" . $module_constant . "', '0.0.0', 'Version installed:', " . $configuration_group_id . ", 0, NOW(), NOW(), 'zen_cfg_select_option(array('0.0.0'),');");
+                VALUES ('Version', '" . $module_constant . "', '0.0.0', 'Version installed:', " . $configuration_group_id . ", 0, NOW(), NOW(), 'trim(');");
 }
 if ($configuration_group_id == '') {
   $config = $db->Execute("SELECT configuration_group_id
@@ -55,7 +55,6 @@ if (version_compare($newest_version, $current_version) > 0) {
       $current_version = str_replace("_", ".", substr($installer, 0, -4));
       $db->Execute("UPDATE " . TABLE_CONFIGURATION . "
                     SET configuration_value = '" . $current_version . "'
-                        set_function = 'zen_cfg_select_option(array('" . $current_version . "'
                     WHERE configuration_key = '" . $module_constant . "'
                     LIMIT 1;");
       $messageStack->add("Installed " . $module_name . " v" . $current_version, 'success');
