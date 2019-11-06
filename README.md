@@ -29,6 +29,8 @@ On the edit page you can set colors to:
 - [ ] Add proper documentation (v1.0.0)
 - [ ] Replace hardcoded texts with language defines (v1.0.0.beta.2)
 - [ ] Add titles to buttons (v1.0.0.beta.2)
+- [x] Save element name after (advanced) edit (v1.0.0.beta.2)
+- [ ] Reduce complexity (v1.0.0)
 - [ ] Add ajax, so page reload without jumping back to top after clicking a button (v2.0.0)
 
 You can not use fancy css selectors like:
