@@ -143,14 +143,14 @@ foreach ($templateInfo as $key => $value) {
                 if ($action == 'edit' && $_GET['elementCount'] == $elementCount && $_GET['advanced'] == 'true') {
                   ?>
                   <tr>
-                    <td class="dataTableContent CssElement"><?php echo zen_draw_input_field($element, $element, 'class="form-control"' . ($_GET['advanced'] !== 'true' ? ' readonly' : '')); ?>
+                    <td class="dataTableContent CssElement"><?php echo zen_draw_input_field('css[' . $elementCount . '][element]', $element, 'class="form-control"' . ($_GET['advanced'] !== 'true' ? ' readonly' : '')); ?>
                     <td>&nbsp;</td>
                   </tr>
                 <?php } else { ?>
                   <tr>
                     <td class="dataTableContent CssElement">
                       <?php echo $element; ?>
-                      <?php echo zen_draw_hidden_field('css[' . $element . ']', $element); ?>
+                      <?php echo zen_draw_hidden_field('css[' . $elementCount . '][element]', $element); ?>
                     </td>
                     <td class="Action text-right">
                       <?php if ($action == '' || $action == 'set_template') { ?>
@@ -186,9 +186,9 @@ foreach ($templateInfo as $key => $value) {
                              <!-- <td class="dataTableContent"><?php echo $property['description']; ?></td> -->
                               <td class="dataTableContent">
                                 <?php echo $property['property']; ?>
-                                <?php echo zen_draw_hidden_field('css[' . $element . '][' . $propertyCount . '][property]', $property['property']); ?>
+                                <?php echo zen_draw_hidden_field('css[' . $elementCount . '][' . $propertyCount . '][property]', $property['property']); ?>
                               </td>
-                              <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][value]', htmlspecialchars($property['value'], ENT_COMPAT, CHARSET, TRUE), 'autofocus class="form-control" id="full-popover" data-color-format="hex"'); ?> <div class="checkbox"><label><?php echo zen_draw_checkbox_field('css[' . $element . '][' . $propertyCount . '][important]', '!important', ($property['important'] == '!important')) . ' ' . TEXT_IMPORTANT; ?></label></div></td>
+                              <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $elementCount . '][' . $propertyCount . '][value]', htmlspecialchars($property['value'], ENT_COMPAT, CHARSET, TRUE), 'autofocus class="form-control" id="full-popover" data-color-format="hex"'); ?> <div class="checkbox"><label><?php echo zen_draw_checkbox_field('css[' . $elementCount . '][' . $propertyCount . '][important]', '!important', ($property['important'] == '!important')) . ' ' . TEXT_IMPORTANT; ?></label></div></td>
                               <td class="dataTableContent text-right">
                                 <div class="btn-group back" style="display:flex;">
                                   <?php if (isset($_GET['advanced']) && $_GET['advanced'] == 'true') { ?>
@@ -219,16 +219,16 @@ foreach ($templateInfo as $key => $value) {
                             <tr>
                              <!-- <td class="dataTableContent text-nowrap">
                               <?php echo $property['description']; ?>
-                              <?php echo zen_draw_hidden_field('css[' . $element . '][' . $propertyCount . '][description]', $property['description']); ?>
+                              <?php echo zen_draw_hidden_field('css[' . $elementCount . '][' . $propertyCount . '][description]', $property['description']); ?>
                               </td> -->
                               <td class="dataTableContent">
                                 <?php echo htmlspecialchars($property['property'], ENT_COMPAT, CHARSET, TRUE); ?>
-                                <?php echo zen_draw_hidden_field('css[' . $element . '][' . $propertyCount . '][property]', $property['property']); ?>
+                                <?php echo zen_draw_hidden_field('css[' . $elementCount . '][' . $propertyCount . '][property]', $property['property']); ?>
                               </td>
                               <td class="dataTableContent" style="background-color: <?php echo $property['value']; ?>;min-width:60px;">&nbsp;</td>
                               <td class="dataTableContent">
                                 <?php echo htmlspecialchars($property['value'], ENT_COMPAT, CHARSET, TRUE) . ' ' . $property['important']; ?>
-                                <?php echo zen_draw_hidden_field('css[' . $element . '][' . $propertyCount . '][value]', $property['value']); ?>
+                                <?php echo zen_draw_hidden_field('css[' . $elementCount . '][' . $propertyCount . '][value]', $property['value']); ?>
                               </td>
                               <td class="dataTableContent text-right">
                                 <?php if ($action == '' || $action == 'set_template') { ?>
@@ -246,9 +246,9 @@ foreach ($templateInfo as $key => $value) {
                         if ($action == 'newSelector' && $elementCount == $_GET['newline']) {
                           ?>
                           <tr>
-                           <!-- <td class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][description]', '', 'class="form-control" placeholder="Optional Comment"'); ?></td> -->
-                            <td class="dataTableContent"><?php echo zen_draw_pull_down_menu('css[' . $element . '][' . $propertyCount . '][property]', $propertyArray, '', 'class="form-control"'); ?></td>
-                            <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $element . '][' . $propertyCount . '][value]', '', 'class="form-control" id="full-popover" data-color-format="hex"'); ?></td>
+                           <!-- <td class="dataTableContent"><?php echo zen_draw_input_field('css[' . $elementCount . '][' . $propertyCount . '][description]', '', 'class="form-control" placeholder="Optional Comment"'); ?></td> -->
+                            <td class="dataTableContent"><?php echo zen_draw_pull_down_menu('css[' . $elementCount . '][' . $propertyCount . '][property]', $propertyArray, '', 'class="form-control"'); ?></td>
+                            <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $elementCount . '][' . $propertyCount . '][value]', '', 'class="form-control" id="full-popover" data-color-format="hex"'); ?></td>
                             <td class="dataTableContent">
                               <div class="btn-group back" style="display:flex;">
                                 <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>

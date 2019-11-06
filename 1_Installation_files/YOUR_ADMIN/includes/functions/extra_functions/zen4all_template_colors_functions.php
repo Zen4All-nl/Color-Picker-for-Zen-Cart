@@ -84,7 +84,8 @@ function saveCssToFile($cssPostArray, $newCssFile)
   $tempFile = fopen(DIR_FS_LOGS . '/css_temp.txt', 'w');
   foreach ($cssPostArray as $newElement => $newCssBlock) {
 
-    fwrite($tempFile, $newElement . ' {' . "\n");
+    fwrite($tempFile, $newCssBlock['element'] . ' {' . "\n");
+    unset($newCssBlock['element']);
     foreach ($newCssBlock as $newCssLine) {
      // ($newCssLine['description'] !== '' ? fwrite($tempFile, '/* ' . $newCssLine['description'] . ' */' . "\n") : '');
       fwrite($tempFile, $newCssLine['property'] . ':' . $newCssLine['value'] . ($newCssLine['important'] == '!important' ? ' ' . $newCssLine['important'] : '') . ';' . "\n");
