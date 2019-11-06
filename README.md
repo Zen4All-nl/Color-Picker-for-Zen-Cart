@@ -1,6 +1,8 @@
 # Zen4All Template Color Picker
 **!! Currently the module is still in BETA !! It is functional, but still needs some tweaking**
+
 Current version: v1.0.0.beta.1
+
 Zen4All Template Color Picker is a back-end tool to set the colors for a Zen Cart theme, so store owners with no coding experience can do simple color tweaking
 
 On the edit page you can set colors to:

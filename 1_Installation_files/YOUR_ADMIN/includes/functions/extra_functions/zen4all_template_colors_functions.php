@@ -63,8 +63,9 @@ function CssFileToArray($currentTemplate)
         $result[$selector][] = [
           'property' => trim($rule[0]),
           'value' => trim(str_replace('!important', '', $rule[1])),
-          'important' => strstr($rule[1], '!')/* ,
-                  'description' => trim($comment) */];
+          'important' => strstr($rule[1], '!')
+                /* 'description' => trim($comment) */
+        ];
       }
     }
   }
@@ -103,6 +104,7 @@ function saveCssToFile($cssPostArray, $newCssFile)
     $messageStack->add_session($newCssFile . TEXT_INFO_NOT_CHANGED);
   }
 }
+
 /**
  * 
  * @global array $messageStack
