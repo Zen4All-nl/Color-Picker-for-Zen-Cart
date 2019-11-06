@@ -9,7 +9,7 @@ On the edit page you can set colors to:
 - borders (border-color, border-top-color, border-right-color, border-bottom-color, border-left-color)
 
 
-## Instalation
+## Installation
 - Copy all the files to your server.
 - the auto installer will add some values to your database:
   - menu items
@@ -17,19 +17,21 @@ On the edit page you can set colors to:
   - a configuration field to set the file name for the color stylesheet
   
 ## Usage
-- Go to admin->configuration->Templat Colors
+- Go to admin->configuration->Template Colors
 - Edit the value of the stylesheet name, if needed
 - Go to admin->tools->Template Colors
-- Select the template from the dropdown, and the values of your color stylesheet apera
+- Select the template from the dropdown, and the values of your color stylesheet appear
 - Now you can edit, delete, or add a new property
 
-## Todo, and limitations
+## To-do, and limitations
 - [ ] Adding a new css element (v1.0.0.beta.2)
 - [ ] Deleting a css element (v1.0.0.beta.2)
 - [ ] Add proper documentation (v1.0.0)
 - [ ] Replace hardcoded texts with language defines (v1.0.0.beta.2)
 - [ ] Add titles to buttons (v1.0.0.beta.2)
-- [ ] Add ajax, so page reload without jumping back to top after clikcing a button (v2.0.0)
+- [ ] Add ajax, so page reload without jumping back to top after clicking a button (v2.0.0)
 
-You can not use fancy css slectors like: .rating > input:checked + label:hover
-The + < > ~ signs are ingored.  This may de fixed in the future
+You can not use fancy css selectors like:
+  .rating > input:checked + label:hover
+
+The + < > ~ signs are ignored. This may de fixed in the future
