@@ -154,7 +154,7 @@ foreach ($templateInfo as $key => $value) {
                     </td>
                     <td class="Action text-right">
                       <?php if ($action == '' || $action == 'set_template') { ?>
-                        <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, zen_get_all_get_params(array('action', 'newline')) . 'action=newSelector&newline=' . $elementCount); ?>" class="btn btn-primary btn-xs" role="button"><i class="fa fa-plus"></i> Add property</a>
+                        <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, zen_get_all_get_params(array('action', 'newline')) . 'action=newSelector&newline=' . $elementCount); ?>" title="<?php echo BUTTON_TEXT_ADD_PROPERTY; ?>" class="btn btn-primary btn-xs" role="button"><i class="fa fa-plus"></i> <?php echo BUTTON_TEXT_ADD_PROPERTY; ?></a>
                       <?php } ?>
                     </td>
                   </tr>
@@ -192,12 +192,12 @@ foreach ($templateInfo as $key => $value) {
                               <td class="dataTableContent text-right">
                                 <div class="btn-group back" style="display:flex;">
                                   <?php if (isset($_GET['advanced']) && $_GET['advanced'] == 'true') { ?>
-                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=edit&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount); ?>" class="btn btn-primary btn-sm" role="button" title="Default Edit"><i class="fa fa-minus-square-o fa-lg" aria-hidden="true"></i></a>
+                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=edit&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount); ?>" title="<?php echo BUTTON_TEXT_DEFAULT_EDIT; ?>" class="btn btn-primary btn-sm" role="button"><i class="fa fa-minus-square-o fa-lg" aria-hidden="true"></i></a>
                                   <?php } else { ?>
-                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=edit&advanced=true&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" title="!! Advanced edit !! Be Careful" class="btn btn-primary btn-sm" role="button"><i class="fa fa-plus-square-o fa-lg" aria-hidden="true"></i></a>
+                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=edit&advanced=true&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" title="<?php echo BUTTON_TEXT_ADVANCED_EDIT; ?>" class="btn btn-primary btn-sm" role="button"><i class="fa fa-plus-square-o fa-lg" aria-hidden="true"></i></a>
                                   <?php } ?>
-                                  <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'select_template=' . $currentTemplate); ?>" class="btn btn-default btn-sm" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></a>
-                                  <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save fa-lg"></i></button>
+                                  <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'select_template=' . $currentTemplate); ?>" title="<?php echo BUTTON_TEXT_CANCEL; ?>" class="btn btn-default btn-sm" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></a>
+                                  <button type="submit" title="<?php echo BUTTON_TEXT_SAVE; ?>" class="btn btn-primary btn-sm"><i class="fa fa-save fa-lg"></i></button>
                                 </div>
                               </td>
                             </tr>
@@ -209,8 +209,8 @@ foreach ($templateInfo as $key => $value) {
                               <td><?php echo htmlspecialchars($property['value'], ENT_COMPAT, CHARSET, TRUE); ?></td>
                               <td>
                                 <div class="btn-group back" style="display:flex;">
-                                  <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'select_template=' . $currentTemplate); ?>" class="btn btn-default btn-sm" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></a>
-                                  <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i></button>
+                                  <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'select_template=' . $currentTemplate); ?>" title="<?php echo BUTTON_TEXT_CANCEL; ?>" class="btn btn-default btn-sm" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></a>
+                                  <button type="submit" title="<?php echo BUTTON_TEXT_CONFIRM_DELETE; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i></button>
                                 </div>
                                 <?php echo zen_draw_hidden_field('deleteProperty', 'true'); ?>
                               </td>
@@ -233,8 +233,8 @@ foreach ($templateInfo as $key => $value) {
                               <td class="dataTableContent text-right">
                                 <?php if ($action == '' || $action == 'set_template') { ?>
                                   <div class="btn-group back" style="display:flex;">
-                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=edit&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit fa-lg" aria-hidden="true"></i></a>
-                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=delete&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" class="btn btn-warning btn-sm" role="button"><i class="fa fa-trash fa-lg"></i></a>
+                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=edit&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" title="<?php echo BUTTON_TEXT_EDIT; ?>" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit fa-lg" aria-hidden="true"></i></a>
+                                    <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'action=delete&select_template=' . $currentTemplate . '&propertyCount=' . $propertyCount . '&elementCount=' . $elementCount); ?>" title="<?php echo BUTTON_TEXT_DELETE; ?>" class="btn btn-warning btn-sm" role="button"><i class="fa fa-trash fa-lg"></i></a>
                                   </div>
                                 <?php } ?>
                               </td>
@@ -251,8 +251,8 @@ foreach ($templateInfo as $key => $value) {
                             <td colspan="2" class="dataTableContent"><?php echo zen_draw_input_field('css[' . $elementCount . '][' . $propertyCount . '][value]', '', 'class="form-control" id="full-popover" data-color-format="hex"'); ?></td>
                             <td class="dataTableContent">
                               <div class="btn-group back" style="display:flex;">
-                                <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg" aria-hidden="true"></i> <?php echo IMAGE_SAVE; ?></button>
+                                <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" title="<?php echo TEXT_CANCEL; ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
+                                <button type="submit" title="<?php echo IMAGE_SAVE; ?>" class="btn btn-primary"><i class="fa fa-save fa-lg" aria-hidden="true"></i> <?php echo IMAGE_SAVE; ?></button>
                               </div>
                             </td>
                           </tr>

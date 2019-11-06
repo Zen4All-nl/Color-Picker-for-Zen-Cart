@@ -19,3 +19,12 @@ define('ERROR_FILE_NOT_WRITEABLE', 'Error: I can not write to this file. Please 
 define('TEXT_INFO_COPY_COMPLETED', 'Succesful saved');
 define('TEXT_INFO_NOT_CHANGED', 'Not changed');
 define('TEXT_IMPORTANT', 'Use !important');
+define('BUTTON_TEXT_ADD_PROPERTY', 'Add property');
+define('BUTTON_TEXT_DEFAULT_EDIT', 'Default property edit');
+define('BUTTON_TEXT_ADVANCED_EDIT', '!! Advanced property edit !! Be Careful');
+define('BUTTON_TEXT_CANCEL', 'Cancel');
+define('BUTTON_TEXT_SAVE', 'Save property');
+define('BUTTON_TEXT_CONFIRM_DELETE', 'Confirm property deletion');
+define('BUTTON_TEXT_DELETE', 'Delete property');
+define('BUTTON_TEXT_EDIT', 'Edit property');
+define('LABEL_NEW_ELEMENT', 'Element name (class ,id, html element)');
