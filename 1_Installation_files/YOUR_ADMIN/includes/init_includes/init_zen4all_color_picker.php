@@ -15,7 +15,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 
 $module_constant = 'ZEN4ALL_COLORPICKER_VERSION';
 $module_installer_directory = DIR_FS_ADMIN . 'includes/installers/zen4all_color_picker';
-$module_name = 'Zen4All Color Picker';
+$module_name = 'Zen4All Template Color Picker';
 $module_file_for_version_check = '';
 $zencart_com_plugin_id = '';
 
