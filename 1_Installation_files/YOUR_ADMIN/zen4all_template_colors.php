@@ -68,6 +68,10 @@ switch ($action) {
     zen_redirect(zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'select_template=' . $currentTemplate));
     break;
   case 'insertElement' :
+    $cssPostArray = new objectInfo($_POST);
+    $cssFilePath = $_POST['file'];
+    insertElementToFile($cssPostArray->element, $cssFilePath);
+    zen_redirect(zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, 'select_template=' . $currentTemplate));
     break;
   default :
     if (!isset($currentTemplate) && $currentTemplate !== '') {
@@ -280,18 +284,19 @@ foreach ($templateInfo as $key => $value) {
         <?php echo '</form>'; ?>
         <?php if ($action == 'newElement') { ?>
           <?php echo zen_draw_form('insertElement', FILENAME_Z4A_TEMPLATE_COLORS, 'action=insertElement', 'post', 'class="form-horizontal"'); ?>
-          <table class="table">
-            <tr>
-              <td class="dataTableContent"><?php echo zen_draw_label('Element name (class or id)', 'element', 'class="control-label"'); ?></td>
-              <td class="dataTableContent"><?php echo zen_draw_input_field('element', '', 'class="form-control"'); ?></td>
-              <td class="dataTableContent">
-                <div class="btn-group back" style="display:flex;">
-                  <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg" aria-hidden="true"></i> <?php echo IMAGE_SAVE; ?></button>
-                </div>
-              </td>
-            </tr>
-          </table>
+          <?php echo zen_draw_hidden_field('file', DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . ZEN4ALL_COLORPICKER_STYLESHEET); ?>
+          <div class="form-group">
+            <?php echo zen_draw_label(LABEL_NEW_ELEMENT, 'element', 'class="col-sm-3 control-label"'); ?>
+            <div class="col-sm-9 col-md-6"><?php echo zen_draw_input_field('element', '', 'class="form-control"'); ?></div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9 col-md-6">
+              <div class="btn-group">
+                <a href="<?php echo zen_href_link(FILENAME_Z4A_TEMPLATE_COLORS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-default" role="button"><i class="fa fa-ban fa-lg" aria-hidden="true"></i> <?php echo TEXT_CANCEL; ?></a>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg" aria-hidden="true"></i> <?php echo IMAGE_SAVE; ?></button>
+              </div>
+            </div>
+          </div>
           <?php echo '</form>'; ?>
         <?php } ?>
       </div>
