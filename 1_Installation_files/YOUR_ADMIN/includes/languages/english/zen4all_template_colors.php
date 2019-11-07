@@ -28,3 +28,5 @@ define('BUTTON_TEXT_CONFIRM_DELETE', 'Confirm property deletion');
 define('BUTTON_TEXT_DELETE', 'Delete property');
 define('BUTTON_TEXT_EDIT', 'Edit property');
 define('LABEL_NEW_ELEMENT', 'Element name (class ,id, html element)');
+define('BUTTON_TEXT_CONFIRM_DELETE_ELEMENT', 'Confirm element deletion');
+define('BUTTON_TEXT_DELETE_ELEMENT', 'Delete element');

@@ -27,7 +27,7 @@ On the edit page you can set colors to:
 
 ## To-do, and limitations
 - [X] Adding a new css element (v1.0.0.beta.2)
-- [ ] Deleting a css element (v1.0.0.beta.2)
+- [X Deleting a css element (v1.0.0.beta.2)
 - [ ] Add proper documentation (v1.0.0)
 - [X] Replace hardcoded texts with language defines (v1.0.0.beta.2)
 - [X] Add titles to buttons (v1.0.0.beta.2)
