@@ -63,8 +63,9 @@ function CssFileToArray($currentTemplate)
         $result[$selector][] = [
           'property' => trim($rule[0]),
           'value' => trim(str_replace('!important', '', $rule[1])),
-          'important' => strstr($rule[1], '!')/*,
-          'description' => trim($comment)*/];
+          'important' => strstr($rule[1], '!')
+                /* 'description' => trim($comment) */
+        ];
       }
     }
   }
@@ -84,15 +85,46 @@ function saveCssToFile($cssPostArray, $newCssFile)
   $tempFile = fopen(DIR_FS_LOGS . '/css_temp.txt', 'w');
   foreach ($cssPostArray as $newElement => $newCssBlock) {
 
-    fwrite($tempFile, $newElement . ' {' . "\n");
+    fwrite($tempFile, $newCssBlock['element'] . ' {' . "\n");
+    unset($newCssBlock['element']);
     foreach ($newCssBlock as $newCssLine) {
-     // ($newCssLine['description'] !== '' ? fwrite($tempFile, '/* ' . $newCssLine['description'] . ' */' . "\n") : '');
+      // ($newCssLine['description'] !== '' ? fwrite($tempFile, '/* ' . $newCssLine['description'] . ' */' . "\n") : '');
       fwrite($tempFile, $newCssLine['property'] . ':' . $newCssLine['value'] . ($newCssLine['important'] == '!important' ? ' ' . $newCssLine['important'] : '') . ';' . "\n");
     }
     fwrite($tempFile, '}' . "\n");
   }
   fclose($tempFile);
 
+  $copyTemp = copy(DIR_FS_LOGS . '/css_temp.txt', $newCssFile);
+
+  if ($copyTemp) {
+    $messageStack->add_session(TEXT_INFO_COPY_COMPLETED . ': ' . $newCssFile, 'success');
+    unlink(DIR_FS_LOGS . '/css_temp.txt');
+  } else {
+    $messageStack->add_session($newCssFile . TEXT_INFO_NOT_CHANGED);
+  }
+}
+
+/**
+ * 
+ * @global array $messageStack
+ * @param string $cssNewElement
+ * @param string $newCssFile
+ */
+function insertElementToFile($cssNewElement, $newCssFile)
+{
+  global $messageStack;
+
+  $tempFile = fopen(DIR_FS_LOGS . '/css_temp.txt', 'w');
+  // Open the file to get existing content
+  $current = file_get_contents($newCssFile);
+  // Append
+  $current .= $cssNewElement . ' {' . "\n";
+  $current .= '}' . "\n";
+  // Write the contents back to the file
+  fwrite($tempFile, $current);
+  fclose($tempFile);
+  // Copy to current file
   $copyTemp = copy(DIR_FS_LOGS . '/css_temp.txt', $newCssFile);
 
   if ($copyTemp) {

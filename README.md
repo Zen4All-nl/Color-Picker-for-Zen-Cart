@@ -1,6 +1,8 @@
 # Zen4All Template Color Picker
 **!! Currently the module is still in BETA !! It is functional, but still needs some tweaking**
+
 Current version: v1.0.0.beta.1
+
 Zen4All Template Color Picker is a back-end tool to set the colors for a Zen Cart theme, so store owners with no coding experience can do simple color tweaking
 
 On the edit page you can set colors to:
@@ -24,14 +26,14 @@ On the edit page you can set colors to:
 - Now you can edit, delete, or add a new property
 
 ## To-do, and limitations
-- [ ] Adding a new css element (v1.0.0.beta.2)
-- [ ] Deleting a css element (v1.0.0.beta.2)
+- [X] Adding a new css element (v1.0.0.beta.2)
+- [X Deleting a css element (v1.0.0.beta.2)
 - [ ] Add proper documentation (v1.0.0)
-- [ ] Replace hardcoded texts with language defines (v1.0.0.beta.2)
-- [ ] Add titles to buttons (v1.0.0.beta.2)
-- [x] Save element name after (advanced) edit (v1.0.0.beta.2)
+- [X] Replace hard-coded texts with language defines (v1.0.0.beta.2)
+- [X] Add titles to buttons (v1.0.0.beta.2)
+- [X] Save element name after (advanced) edit (v1.0.0.beta.2)
 - [ ] Reduce complexity (v1.0.0)
-- [ ] Add ajax, so page reload without jumping back to top after clicking a button (v2.0.0)
+- [ ] Add Ajax, so page reload without jumping back to top after clicking a button (v2.0.0)
 
 You can not use fancy css selectors like:
   .rating > input:checked + label:hover
