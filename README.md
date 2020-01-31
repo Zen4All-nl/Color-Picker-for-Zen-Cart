@@ -26,16 +26,19 @@ On the edit page you can set colors to:
 - Now you can edit, delete, or add a new property
 
 ## To-do, and limitations
-- [X] Adding a new css element (v1.0.0.beta.2)
-- [X Deleting a css element (v1.0.0.beta.2)
+- [X] Adding a new css element (v1.0.0-beta-2)
+- [X] Deleting a css element (v1.0.0-beta-2)
 - [ ] Add proper documentation (v1.0.0)
-- [X] Replace hard-coded texts with language defines (v1.0.0.beta.2)
-- [X] Add titles to buttons (v1.0.0.beta.2)
-- [X] Save element name after (advanced) edit (v1.0.0.beta.2)
-- [ ] Reduce complexity (v1.0.0)
+- [X] Replace hard-coded texts with language defines (v1.0.0-beta.2)
+- [X] Add titles to buttons (v1.0.0-beta.2)
+- [X] Save element name after (advanced) edit (v1.0.0-beta.2)
+- [ ] Reduce complexity (v1.0.0-beta3)
 - [ ] Add Ajax, so page reload without jumping back to top after clicking a button (v2.0.0)
 
 You can not use fancy css selectors like:
-  .rating > input:checked + label:hover
-
-The + < > ~ signs are ignored. This may de fixed in the future
+```css
+.rating > input:checked + label:hover {
+  color: #000;
+}
+```
+The + < > ~ characters are ignored. This may de fixed in the future
