@@ -18,6 +18,7 @@ define('TEXT_HELP_TEMPLATE', 'Selecting the template will load the colors styles
 define('ERROR_FILE_NOT_WRITEABLE', 'Error: I can not write to this file. Please set the right user permissions on: %s');
 define('TEXT_INFO_COPY_COMPLETED', 'Succesful saved');
 define('TEXT_INFO_NOT_CHANGED', 'Not changed');
+define('TEXT_INFO_NOT_CREATED', 'New file could not be created');
 define('TEXT_IMPORTANT', 'Use !important');
 define('BUTTON_TEXT_ADD_PROPERTY', 'Add property');
 define('BUTTON_TEXT_DEFAULT_EDIT', 'Default property edit');
@@ -30,3 +31,10 @@ define('BUTTON_TEXT_EDIT', 'Edit property');
 define('LABEL_NEW_ELEMENT', 'Element name (class ,id, html element)');
 define('BUTTON_TEXT_CONFIRM_DELETE_ELEMENT', 'Confirm element deletion');
 define('BUTTON_TEXT_DELETE_ELEMENT', 'Delete element');
+define('BUTTON_TEXT_ADD_NEW_ELEMENT', 'Add new element');
+define('TEXT_HELP_NEW_FILE', 'There is no existing css overwrite file for this template.<br>Do you want to create one?');
+
+/* colorpicker */
+define('TEXT_ADD_COLOR', 'Add color to swatches');
+define('TEXT_REMOVE_COLOR', 'Remove color from swatches');
+define('TEXT_RESET_SWATCHES', 'Reset to default swatches');
