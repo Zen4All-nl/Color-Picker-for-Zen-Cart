@@ -1,14 +1,14 @@
 <?php
 
-/*
- * init_zen4all_cittins.php
+/**
+ * init_zen4all_color_picker.php
  *
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2020 Zen Cart Development Team
+ * @copyright Copyright 2020 Zen4All
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version Author: Erik Kerkhoven 1-3-2019
- * 
+ * @version 1.0.0
+ * @author Erik Kerkhoven
  */
-
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
@@ -25,7 +25,7 @@ if (defined($module_constant)) {
 } else {
   $current_version = '0.0.0';
   $db->Execute("INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_title, configuration_group_description, sort_order, visible)
-                VALUES ('" . $module_name . "', '" . $module_name . " Settings', '1', '1');");
+                VALUES ('" . $module_name . "', '" . $module_name . " Settings', 1, 1);");
   $configuration_group_id = $db->Insert_ID();
 
   $db->Execute("UPDATE " . TABLE_CONFIGURATION_GROUP . "
@@ -52,7 +52,7 @@ if (version_compare($newest_version, $current_version) > 0) {
   foreach ($installers as $installer) {
     if (version_compare($newest_version, substr($installer, 0, -4)) >= 0 && version_compare($current_version, substr($installer, 0, -4)) < 0) {
       include($module_installer_directory . '/' . $installer);
-      $current_version = str_replace("_", ".", substr($installer, 0, -4));
+      $current_version = str_replace('_', '.', substr($installer, 0, -4));
       $db->Execute("UPDATE " . TABLE_CONFIGURATION . "
                     SET configuration_value = '" . $current_version . "'
                     WHERE configuration_key = '" . $module_constant . "'
@@ -73,50 +73,48 @@ if ($zencart_com_plugin_id != 0 && $module_file_for_version_check != '' && $_SER
 
 if (!function_exists('plugin_version_check_for_updates')) {
 
-  function plugin_version_check_for_updates($plugin_file_id = 0, $version_string_to_compare = '') {
-    if ($plugin_file_id == 0) {
+  function plugin_version_check_for_updates($plugin_file_id = 0, $version_string_to_compare = '', $strict_zc_version_compare = false)
+  {
+
+    if ($plugin_file_id === 0) {
       return false;
-    }
-    $new_version_available = false;
-    $lookup_index = 0;
-    $url = 'https://www.zen-cart.com/downloads.php?do=versioncheck' . '&id=' . (int)$plugin_file_id;
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_VERBOSE, 0);
-    curl_setopt($ch, CURLOPT_HEADER, false);
-    curl_setopt($ch, CURLOPT_USERAGENT, 'Plugin Version Check [' . (int)$plugin_file_id . '] ' . HTTP_SERVER);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
-    $error = curl_error($ch);
-    if ($error > 0) {
-      curl_setopt($ch, CURLOPT_URL, str_replace('tps:', 'tp:', $url));
-      $response = curl_exec($ch);
-      $error = curl_error($ch);
-    }
-    curl_close($ch);
-    if ($error > 0 || $response == '') {
-      $response = file_get_contents($url);
-    }
-    if ($response === false) {
-      $response = file_get_contents(str_replace('tps:', 'tp:', $url));
-    }
-    if ($response === false) {
-      return false;
-    }
-    $data = json_decode($response, true);
-    if (!$data || !is_array($data)) {
-      return false;
-    }
-    // compare versions
-    if (strcmp($data[$lookup_index]['latest_plugin_version'], $version_string_to_compare) > 0) {
-      $new_version_available = true;
-    }
-    // check whether present ZC version is compatible with the latest available plugin version
-    if (!in_array('v' . PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR, $data[$lookup_index]['zcversions'])) {
-      $new_version_available = false;
     }
 
-    return ($new_version_available) ? $data[$lookup_index] : false;
+    if (false === ENABLE_PLUGIN_VERSION_CHECKING) {
+      return false;
+    }
+
+    $new_version_available = false;
+    $versionServer = new VersionServer();
+    $data = json_decode($versionServer->getPluginVersion($plugin_file_id), true);
+
+    if (null === $data || isset($data['error'])) {
+      if (!empty(LOG_PLUGIN_VERSIONCHECK_FAILURES)) {
+        error_log('CURL error checking plugin versions: ' . print_r($data['error'], true));
+      }
+      return false;
+    }
+
+    if (!is_array($data)) {
+      $data = json_decode($data, true);
+    }
+
+    if (strcmp($data[0]['latest_plugin_version'], $version_string_to_compare) > 0) {
+      $new_version_available = true;
+    }
+
+    // check whether present ZC version is compatible with the latest available plugin version
+    if (!defined('PLUGIN_VERSION_CHECK_MATCHING_OVERRIDE') || empty(PLUGIN_VERSION_CHECK_MATCHING_OVERRIDE)) {
+      $zc_version = PROJECT_VERSION_MAJOR . '.' . preg_replace('/[^0-9.]/', '', PROJECT_VERSION_MINOR);
+      if ($strict_zc_version_compare) {
+        $zc_version = PROJECT_VERSION_MAJOR . '.' . PROJECT_VERSION_MINOR;
+      }
+      if (!in_array('v' . $zc_version, $data[0]['zcversions'], false)) {
+        $new_version_available = false;
+      }
+    }
+
+    return $new_version_available ? $data[0] : false;
   }
 
 }

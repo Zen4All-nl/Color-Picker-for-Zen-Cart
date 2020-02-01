@@ -12,7 +12,7 @@
  * 
  * @return array
  */
-function getTemplateInfo()
+function zen4all_getTemplateInfo()
 {
   // get an array of template info
   $dir = dir(DIR_FS_CATALOG_TEMPLATES);
@@ -37,7 +37,7 @@ function getTemplateInfo()
  * @param string $currentTemplate
  * @return array
  */
-function CssFileToArray($currentTemplate)
+function zen4all_cssFileToArray($currentTemplate)
 {
   $cssFile = DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . ZEN4ALL_COLORPICKER_STYLESHEET;
   if (file_exists($cssFile)) {
@@ -63,8 +63,7 @@ function CssFileToArray($currentTemplate)
         $result[$selector][] = [
           'property' => trim($rule[0]),
           'value' => trim(str_replace('!important', '', $rule[1])),
-          'important' => strstr($rule[1], '!')
-                /* 'description' => trim($comment) */
+          'important' => strstr($rule[1], '!'),
         ];
       }
     }
@@ -78,7 +77,7 @@ function CssFileToArray($currentTemplate)
  * @param array $cssPostArray
  * @param string $newCssFile
  */
-function saveCssToFile($cssPostArray, $newCssFile)
+function zen4all_saveCssToFile($cssPostArray, $newCssFile)
 {
   global $messageStack;
 
@@ -111,7 +110,7 @@ function saveCssToFile($cssPostArray, $newCssFile)
  * @param string $cssNewElement
  * @param string $newCssFile
  */
-function insertElementToFile($cssNewElement, $newCssFile)
+function zen4all_insertElementToFile($cssNewElement, $newCssFile)
 {
   global $messageStack;
 
@@ -140,11 +139,25 @@ function insertElementToFile($cssNewElement, $newCssFile)
  * @param type $cssRaw
  * @return type
  */
-function minimizeCSS($cssRaw)
+function zen4all_minimizeCSS($cssRaw)
 {
   $step1 = preg_replace('/\/\*((?!\*\/).)*\*\//', '', $cssRaw); // negative look ahead
   $step2 = preg_replace('/\s{2,}/', ' ', $step1);
   $step3 = preg_replace('/\s*([:;{}])\s*/', '$1', $step2);
   $cssMin = preg_replace('/;}/', '}', $step3);
   return $cssMin;
+}
+
+function zen4all_createNewCssFile($currentTemplate)
+{
+  global $messageStack;
+  if (!file_exists(DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . ZEN4ALL_COLORPICKER_STYLESHEET)) {
+    $newCssFile = fopen(DIR_FS_CATALOG_TEMPLATES . $currentTemplate . '/css/' . ZEN4ALL_COLORPICKER_STYLESHEET, 'w');
+    fclose($newCssFile);
+  }
+  if ($newCssFile) {
+    $messageStack->add_session(TEXT_INFO_COPY_COMPLETED . ': ' . $newCssFile, 'success');
+  } else {
+    $messageStack->add_session($newCssFile . TEXT_INFO_NOT_CREATED);
+  }
 }
